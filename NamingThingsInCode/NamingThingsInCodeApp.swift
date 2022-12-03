@@ -11,7 +11,9 @@ import SwiftUI
 struct NamingThingsInCodeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                ContentView(navTitle: "Content View")
+            }
         }
     }
 }

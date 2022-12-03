@@ -5,22 +5,41 @@
 //  Created by Alex Nagy on 03.12.2022.
 //
 
-import SwiftUI
-
 struct ContentView: View {
+    // MARK: - Body
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+                if t != "" {
+                    Text("\(t)")
+                } else {
+                    Text("Provide a name")
+                }
+                    my_text_field(Text: $t)
+            GoToDetailVC()
+                .IsBordered()
         }
         .padding()
+        .navigationTitle(navTitle)
     }
+    
+    func GoToDetailVC() -> some View {
+        NavigationLink("button"){detailVC1()}
+    }
+    
+    init(navTitle: String) {
+        self.navTitle = navTitle
+    }
+    
+    // misc.
+    @State var t = ""
+    private var navTitle = "Content"
+    @Environment(\.managedObjectContext) var moc
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+import SwiftUI
+
+fileprivate extension View {
+    func IsBordered() -> some View {
+        return self.buttonStyle(.borderedProminent)
     }
 }
